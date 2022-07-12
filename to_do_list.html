@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text" id="task"/>
+        <input type="submit" value="Criar tarefa" id="submit-btn"/>
+    </form>
+    
+    <ul id="list">
+
+    </ul>
+    <script>
+        let list = [];
+        let items = "";
+
+        const btn = document.getElementById("submit-btn");
+        const listHtml = document.getElementById("list");
+
+        btn.addEventListener("click", function(e){
+            e.preventDefault();
+    
+            const task = document.getElementById("task");
+            const taskValue = task.value;
+
+            list.push(taskValue);
+
+            task.value = "";
+
+            update();
+        });
+
+        function listar(){
+            for(let i = 0; i < list.length; i++){
+                items += `<li><div><p>${list[i]}</p><button>Remover</button></div></li>`;
+            }
+        }
+
+        function update(){
+            listar();
+            listHtml.innerHTML = items;
+            items = "";
+        }
+    </script>
+    
+</body>
+</html>

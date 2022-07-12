@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var agenda = new Array()
+
+        function novo_contato(nome, contato) {
+            agenda.push([nome, contato])
+            return agenda
+        }
+
+        function listar_contatos(array) {
+            let texto = ""
+            for (let i = 0; i < array.length; i++) {
+                texto += (`NOME: ${array[i][0]} CONTATO: ${array[i][1]} \n`)
+            }
+        return window.alert(String(texto))
+        }
+
+        function buscar(nome, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (nome == array[i][0]) {
+                return window.alert(String(` NOME: ${array[i][0]} \n CONTATO: ${array[i][1]} \n`))
+                } else {
+                return window.alert("Nome não encontrado nos registros.")
+                }
+            }
+        }
+
+        function deletar(contato, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (contato == array[i][1]) {
+                    array.splice(i, i + 1)
+                    return window.alert("Número deletado dos registros.")
+
+                } else {
+                    return window.alert("Número não encontrado nos registros.")
+                }
+            }
+        }
+
+        do {
+            var select = prompt(` 1 _______________ NOVO CONTATO
+            \n 2 _______________ LISTAR
+            \n 3 _______________ BUSCAR
+            \n 4 _______________ DELETAR`)
+
+            if (select == "1") {
+                let nome = prompt("Nome do contato: ")
+                let numero = prompt("Número do contato: ")
+                var cadastro = novo_contato(nome, numero)
+
+            } else if (select == "2") {
+                listar_contatos(cadastro)
+
+            } else if (select == "3") {
+                let contato = prompt("Insira o nome do contato: ")
+                buscar(contato, agenda)
+
+            } else if (select == "4") {
+                let numero = prompt("Insira o número do contato: ")
+                deletar(numero, agenda)
+
+            } else {
+                print("Selecione uma opção valida.")
+            }
+
+        } while (confirm("Voltar para à página inicial? ") ? true : false);
+    </script>
+    
+</body>
+</html>
